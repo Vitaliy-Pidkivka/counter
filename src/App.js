@@ -1,26 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Display from "./components/Display/Display";
+import Button from "./components/Button/Button";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+    state = {
+        value: 0,
+        maxValue: 5,
+    }
+    addValue = () => {
+        this.setState(
+            {
+                value: this.state.value + 1,
+            }
+        )
+    }
+    resetValue = () => {
+        this.setState({
+            value: 0,
+        })
+    }
+    render = () =>
+        <div className="App">
+            <Display value={this.state.value}
+                     maxValue={this.state.maxValue}
+                     maxClass={this.state.value === this.state.maxValue}
+            />
+            <div>
+                <Button disabled={this.state.value === this.state.maxValue}
+                        onClick={this.addValue}
+                        value={'inc'}
+                />
+                <Button disabled={!(this.state.value)}
+                        onClick={this.resetValue}
+                        value={'reset'}
+                />
+            </div>
+        </div>
 }
 
 export default App;

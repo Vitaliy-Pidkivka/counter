@@ -1,0 +1,28 @@
+.default-btn {
+  width: 195px;
+  padding: 5px 20px;
+  border-radius: 6px;
+  border: none;
+  background: linear-gradient(to right, #0099ff, #008075);
+  text-transform: uppercase;
+  color: white;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px black;
+  font-size: 18px;
+
+  &:focus{
+    outline: none;
+  }
+  &:active{
+    transform: scale(0.90);
+  }
+  &:first-child {
+    margin: 0 10px 0 0
+  }
+
+}
+
+.disabled {
+  opacity: 0;
+  visibility: hidden;
+}

@@ -1,9 +1,17 @@
 import React from "react";
+import styles from "./Button.module.scss";
 
-const Display = (props) => {
-    return (
-        <div className="display"> 0 </div>
-    )
+class Display extends React.Component {
+    render() {
+        const {value, onClick, disabled} = this.props
+        return (
+            <button className={`${styles['default-btn']} ${disabled && styles['disabled']}`}
+                    onClick={() => (onClick())}
+                    disabled={disabled}>
+                {value}
+            </button>);
+    }
 }
+
 
 export default Display
