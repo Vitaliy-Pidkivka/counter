@@ -69,7 +69,7 @@ class App extends React.Component {
                              maxValue={this.state.maxValue}
                              maxClass={this.state.value === this.state.maxValue}
                     />
-                    <div>
+                    <div className="buttons">
                         <Button disabled={this.state.value >= this.state.maxValue}
                                 onClick={this.addValue}
                                 value={'inc'}
