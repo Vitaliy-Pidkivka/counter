@@ -1,0 +1,35 @@
+.value-setter__input {
+  box-shadow: 0 0 15px black;
+  padding: 15px;
+  border-radius: 4px;
+  &.error{
+    input{
+      background: #7d0a0a;
+    }
+  }
+  &:not(:last-child) {
+    margin-bottom: 30px;
+  }
+
+  input {
+    background: #000000;
+    border: none;
+    border-radius: 4px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    font-size: 40px;
+    max-width: 95%;
+    height: 60px;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 0 0 6px black;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    @media (max-width: 991px){
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+}
+

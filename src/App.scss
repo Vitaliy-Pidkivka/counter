@@ -1,13 +1,23 @@
-*, *::before, *::after{
+*,html,body, *::before, *::after{
   box-sizing: border-box;
 }
 .App {
   text-align: center;
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  background: linear-gradient(35deg, aqua 10%,  purple 80%);
+  background: linear-gradient(20deg,black 2%, #147b7b,  #000000 98%);
+  @media (max-width: 991px){
+    flex-direction: column;
+  }
+  &>div{
+    flex: 0 1 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+  }
 }
 
