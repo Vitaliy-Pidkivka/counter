@@ -48,8 +48,6 @@ class App extends React.Component {
     }
     onChangeMinValue = (value) => {
         this.setState({newMinValue: value},()=> this.saveState())
-
-
     }
     setNewValues = () =>{
             this.setState({
