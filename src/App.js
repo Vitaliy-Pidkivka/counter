@@ -7,43 +7,57 @@ import ValueSetter from "./components/ValueSetter/ValueSetter";
 
 class App extends React.Component {
     state = {
-        value: +localStorage.getItem('newMinValue') ||  0,
-        maxValue: +localStorage.getItem('newMaxValue') || 5,
-        minValue: +localStorage.getItem('newMinValue') || 0,
-        newMaxValue:+localStorage.getItem('newMaxValue') || 5,
-        newMinValue: +localStorage.getItem('newMinValue') || 0
+        value:   0,
+        maxValue: 5,
+        minValue:  0,
+        newMaxValue: 5,
+        newMinValue:  0
+    }
+    componentDidMount() {
+        this.restoreState()
+    }
+    saveState(){
+        let stateAsString = JSON.stringify(this.state);
+        localStorage.setItem('our-state', stateAsString);
+    }
+    restoreState(){
+        let state = {   value:   0, maxValue: 5, minValue:  0, newMaxValue: 5,newMinValue:  0  }
+        let stateAsString = localStorage.getItem('our-state');
+        if(stateAsString != null) {
+            state = JSON.parse(stateAsString)
+        }
+        this.setState({
+            ...state
+        })
     }
     addValue = () => {
         this.setState(
             {
                 value: this.state.value + 1,
-            }
+            },()=> this.saveState()
         )
+
     }
     resetValue = () => {
-        this.setState({value: this.state.minValue,})
+        this.setState({value: this.state.minValue,},()=> this.saveState())
+
     }
     onChangeMaxValue = (value) => {
-        this.setState({newMaxValue: value})
+        this.setState({newMaxValue: value},()=> this.saveState())
+
     }
     onChangeMinValue = (value) => {
-        this.setState({newMinValue: value})
+        this.setState({newMinValue: value},()=> this.saveState())
+
+
     }
     setNewValues = () =>{
-        localStorage.setItem('newMaxValue' , this.state.newMaxValue.toString())
-        localStorage.setItem('newMinValue' , this.state.newMinValue.toString())
-        let max = +localStorage.getItem('newMaxValue')
-        let min = +localStorage.getItem('newMinValue')
             this.setState({
-            maxValue: max,
-            minValue: min,
-            value: min,
-        })
-        // this.setState({
-        //     maxValue: this.state.newMaxValue,
-        //     minValue: this.state.newMinValue,
-        //     value: this.state.newMinValue,
-        // })
+            maxValue: this.state.newMaxValue,
+            minValue: this.state.newMinValue,
+            value:  this.state.newMinValue,
+        },()=> this.saveState())
+
     }
     render = () => {
         let error = this.state.newMinValue < 0 || this.state.newMinValue > this.state.newMaxValue;
